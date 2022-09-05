@@ -1,0 +1,14 @@
+{% extends "base_template.html" %}
+{% block title %}Posts{% endblock %}
+{% block content %}
+<p>Your posts :  {{request.user}}</p>
+{% for post in posts %}
+        {% if post.content_type == 'TICKET' %}
+            {% include 'ticket/ticket_snippet.html' %}
+        {% elif post.content_type == 'REVIEW' %}
+            {% include 'review/review_snippet.html' %}
+        {% endif %}
+        <a href="modify/{{ post.content_type }}/{{ post.id }}"><button type="submit">Modify</button></a>
+        <a href="delete/{{ post.content_type }}/{{ post.id }}"><button type="submit">Delete</button></a>
+    {% endfor %}
+{% endblock %}

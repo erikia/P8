@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+{% block title %}Flux{% endblock %}
+{% block content %}
+<div class="review_buttons">
+<br>
+<a href="create_ticket"><button type="submit">Create ticket</button></a>
+<a href="create_review/one_step_review"><button type="submit">Create review</button></a>
+<br>
+</div>
+<div class="feed">
+    <p>Hello {{ request.user }}</p>
+    {% for post in posts %}
+        {% if post.content_type == 'TICKET' %}
+            {% include 'ticket/ticket_snippet.html' %}
+        {% elif post.content_type == 'REVIEW' %}
+            {% include 'review/review_snippet.html' %}
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

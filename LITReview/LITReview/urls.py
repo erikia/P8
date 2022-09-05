@@ -19,7 +19,12 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('review/', include('review.urls')),
     path('admin/', admin.site.urls)
+    path('', views.home, name='home'),
+    path('user/', include('django.contrib.auth.urls')),
+    path('review/', include('review.urls')),
+    path('flux/', flux_view, name='flux'),
+    path('abos/', abos_view, name='abos'),
+    path('posts/', posts_view, name='posts'),
+    
 ]
