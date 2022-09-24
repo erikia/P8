@@ -7,15 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{% block title %}{% endblock %}</title>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link rel="stylesheet" href="/static/index.css">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
+<!-- header -->
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="site_title">
-      <h3>LITReview</h3>
+      <h3 id="title">LITReview</h3>
     </div>
     <div class="collapse navbar-collapse d-flex flex-row-reverse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" id="title">
         <li class="nav-item active">
           <a class="nav-link" href="/flux">Flux<span class="sr-only">(current)</span></a>
         </li>
@@ -23,19 +24,22 @@
           <a class="nav-link" href="/posts">Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/abos">Abos</a>
+          <a class="nav-link" href="/abos">Followers</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/logout_user">Logout</a>
         </li>
       </ul>
     </div>
+    <form class="form-inline my-2 my-lg-0" id="search-h">
+      <input class="form-control mr-sm-1" type="search" placeholder="Search">
+      <button type="submit" >Search</button>
+    </form>
   </nav>
 </header>
-
+<!-- end of header -->
 <body>
   {% block content %}{% endblock %}
-
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

@@ -1,0 +1,16 @@
+{% extends "base_template.html" %}
+{% block title %}Create review{% endblock %}
+{% block content %}
+
+<div class="book">
+    <h3 class="h3ticket">Create review</h3>
+    <br>
+    <p> You comment to   {% include 'ticket/ticket_snippet.html' with post=ticket %}</p>
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit">
+    </form>
+
+    {% endblock %}

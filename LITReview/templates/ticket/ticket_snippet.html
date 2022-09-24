@@ -1,0 +1,18 @@
+<div class="ticket_snippet">
+    <div>
+        <p>{{post.user}} asked for a review</p>
+        <p>{{post.time_created}}</p>
+    </div>
+    <div>
+        <p>{{post.title}}</p>
+        <p>{{post.description}}</p>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="arf">
+        {% endif %}
+        {% if post not in answered_tickets %}
+        <a href="create_review/{{ post.id }}/"><button type="submit" class="create_r">Create review</button></a>
+        {% endif %}
+        <br>
+        <br>
+    </div>
+</div>
