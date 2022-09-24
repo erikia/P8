@@ -24,15 +24,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('django.contrib.auth.urls')),
     path('', views.home, name='home'),
-    path('flux/', views.flux_view, name='flux'),
-    path('abos/', views.abos_view, name='abos'),
-    path('posts/', views.posts_view, name='posts'),
+    path('flux/', views.get_flux_view, name='flux'),
+    path('abos/', views.show_followers_view, name='abos'),
+    path('posts/', views.show_posts_view, name='posts'),
     path('flux/create_ticket/', include('ticket.urls', namespace='ticket')),
     path('flux/create_user', views.create_user, name='create_user'),
     path('flux/log_user', views.log_user, name='log_user'),
     path('logout_user/', views.logout_user, name='logout_user'),
     path('flux/create_review/', include('review.urls', namespace='review')),
-    path('posts/modify/<str:content_type>/<int:content_id>', views.modify_view, name='modify'),
-    path('posts/delete/<str:content_type>/<int:content_id>', views.delete_view, name='delete'),
+    path('posts/modify/<str:content_type>/<int:content_id>',
+         views.modify_view, name='modify'),
+    path('posts/delete/<str:content_type>/<int:content_id>',
+         views.delete_view, name='delete'),
     path('abos/unfollow/<str:username>', views.unfollow_view, name='unfollow')
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

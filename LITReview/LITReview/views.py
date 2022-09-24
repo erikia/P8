@@ -17,8 +17,9 @@ from followers.models import UserFollows
 def home(request):
     return render(request, 'index.html')
 
+
 @login_required
-def flux_view(request):
+def get_flux_view(request):
     reviews = get_all_reviews(request)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = get_all_tickets(request)
@@ -41,7 +42,7 @@ def get_all_reviews(request):
     for userfollow in userfollows:
         user_reviews_list = get_user_reviews(userfollow.followed_user)
         reviews_list = reviews_list | user_reviews_list
-        
+
     return reviews_list
 
 
@@ -63,8 +64,9 @@ def get_user_answered_tickets(userx):
         answers_list.append(answer)
     return answers_list
 
+
 @login_required
-def abos_view(request):
+def show_followers_view(request):
     userfollows = get_user_follows(request.user)
     followers = get_user_followers(request.user)
 
@@ -77,7 +79,8 @@ def abos_view(request):
                     if userfollow.followed_user == researched_user:
                         return HttpResponse("You're already following this user")
 
-                UserFollows.objects.create(user=request.user, followed_user=researched_user)
+                UserFollows.objects.create(
+                    user=request.user, followed_user=researched_user)
                 return redirect('abos')
 
             else:
@@ -90,8 +93,9 @@ def abos_view(request):
 
     return render(request, 'abos/abos.html', locals())
 
+
 @login_required
-def posts_view(request):
+def show_posts_view(request):
     reviews = get_user_reviews(request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = get_user_tickets(request.user)
@@ -150,6 +154,7 @@ def log_user(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
+
 
 @login_required
 def modify_view(request, content_type, content_id):
